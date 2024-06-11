@@ -56,6 +56,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.GameRules;
@@ -441,7 +442,7 @@ public class CuriosEventHandler {
       }
     }
   }
-
+  /*
   @SubscribeEvent
   public void looting(LootingLevelEvent evt) {
     DamageSource source = evt.getDamageSource();
@@ -452,6 +453,7 @@ public class CuriosEventHandler {
               .getLootingLevel(source, evt.getEntity(), evt.getLootingLevel())).orElse(0));
     }
   }
+   */
 
   @SubscribeEvent(priority = EventPriority.HIGHEST)
   public void onBreakBlock(BlockDropsEvent evt) {
@@ -473,12 +475,10 @@ public class CuriosEventHandler {
         }
       });
       ItemStack stack = livingEntity.getMainHandItem();
-      int bonusLevel = stack.getEnchantmentLevel(Enchantments.FORTUNE);
-      int silklevel = stack.getEnchantmentLevel(Enchantments.SILK_TOUCH);
       LevelAccessor level = evt.getLevel();
       evt.setDroppedExperience(evt.getState()
-              .getExpDrop(level, level.getRandom(), evt.getPos(), bonusLevel + fortuneLevel.get(),
-                      silklevel));
+              .getExpDrop(level, level.getRandom(), evt.getPos()
+              ));
     }
   }
 
