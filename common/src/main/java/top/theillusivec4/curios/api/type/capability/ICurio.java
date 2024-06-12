@@ -41,6 +41,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -464,7 +465,7 @@ public interface ICurio {
   @ApiStatus.ScheduledForRemoval(inVersion = "1.21")
   default int getFortuneBonus(String identifier, LivingEntity livingEntity, ItemStack curio,
                               int index) {
-    return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FORTUNE, curio);
+    return EnchantmentHelper.getItemEnchantmentLevel((Holder<Enchantment>) Enchantments.FORTUNE, curio);
   }
 
   /**
@@ -474,7 +475,7 @@ public interface ICurio {
   @ApiStatus.ScheduledForRemoval(inVersion = "1.21")
   default int getLootingBonus(String identifier, LivingEntity livingEntity, ItemStack curio,
                               int index) {
-    return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.LOOTING, curio);
+    return EnchantmentHelper.getItemEnchantmentLevel((Holder<Enchantment>) Enchantments.LOOTING, curio);
   }
 
   /**

@@ -37,6 +37,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -201,7 +202,7 @@ public class ClientEventHandler {
 
               if (player != null) {
 
-                if (attributemodifier.id() == ATTACK_DAMAGE_MODIFIER) {
+                if (attributemodifier.is(ResourceLocation.parse((ATTACK_DAMAGE_MODIFIER.toString())))) {
                   AttributeInstance att = player.getAttribute(Attributes.ATTACK_DAMAGE);
 
                   if (att != null) {
@@ -209,7 +210,7 @@ public class ClientEventHandler {
                   }
                   amount = amount + EnchantmentHelper.getDamageBonus(stack, null);
                   flag = true;
-                } else if (attributemodifier.id() == ATTACK_SPEED_MODIFIER) {
+                } else if (attributemodifier.is(ResourceLocation.parse(ATTACK_SPEED_MODIFIER.toString()))) {
                   AttributeInstance att = player.getAttribute(Attributes.ATTACK_SPEED);
 
                   if (att != null) {

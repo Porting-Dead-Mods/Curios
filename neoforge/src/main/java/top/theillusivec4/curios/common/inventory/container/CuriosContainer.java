@@ -27,6 +27,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nonnull;
+
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.resources.ResourceLocation;
@@ -52,6 +54,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -155,8 +158,7 @@ public class CuriosContainer extends RecipeBookMenu<CraftingContainer> implement
         @Override
         public boolean mayPickup(@Nonnull Player playerIn) {
           ItemStack itemstack = this.getItem();
-          return (itemstack.isEmpty() || playerIn.isCreative() || !EnchantmentHelper
-              .hasBindingCurse(itemstack)) && super.mayPickup(playerIn);
+          return (itemstack.isEmpty() || playerIn.isCreative() || !itemstack.has((DataComponentType<?>) Enchantments.BINDING_CURSE)) && super.mayPickup(playerIn);
         }
 
 
@@ -378,7 +380,7 @@ public class CuriosContainer extends RecipeBookMenu<CraftingContainer> implement
         if (!this.moveItemStackTo(itemstack1, 9, 45, false)) {
           return ItemStack.EMPTY;
         }
-      } else if (entityequipmentslot.getType() == EquipmentSlot.Type.ARMOR
+      } else if (entityequipmentslot.getType() == EquipmentSlot.Type.HUMANOID_ARMOR
           && !this.slots.get(8 - entityequipmentslot.getIndex()).hasItem()) {
         int i = 8 - entityequipmentslot.getIndex();
 

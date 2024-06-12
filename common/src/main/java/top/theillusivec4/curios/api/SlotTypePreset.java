@@ -75,7 +75,7 @@ public enum SlotTypePreset {
   @ApiStatus.ScheduledForRemoval(inVersion = "1.22")
   public Builder getMessageBuilder() {
     return new Builder(this.id).priority(this.priority).icon(
-        new ResourceLocation(CuriosConstants.MOD_ID,
+        ResourceLocation.withDefaultNamespace(
             "slot/empty_" + this.getIdentifier() + "_slot"));
   }
 }
